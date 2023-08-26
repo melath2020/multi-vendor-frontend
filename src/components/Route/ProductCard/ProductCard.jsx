@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from '../../../styles/styles';
 import Ratings from '../../Products/Ratings';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart, AiOutlineEye, AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
+import ProductDetailsCard from '../ProductDetailsCard/ProductDetailsCard';
 
 
 const ProductCard = ({ data,isEvent }) => {
@@ -83,7 +84,27 @@ const ProductCard = ({ data,isEvent }) => {
               color={click ? "red" : "#333"}
               title="Add to wishlist"
             />
+            
           )}
+          <AiOutlineEye
+              size={22}
+              className="cursor-pointer absolute right-2 top-14"
+              onClick={() => setOpen(!open)}
+              color="#333"
+              title="Quick View"
+            />
+            <AiOutlineShoppingCart
+              size={25}
+              className="cursor-pointer absolute right-2 top-24"
+              onClick={() => setOpen(!open)}
+              color="#444"
+              title="Add to Cart"
+            />
+            {
+              open ? (
+                <ProductDetailsCard open={open} setOpen={setOpen} data={data}/>
+              ): null
+            }
           </div>
 
 
