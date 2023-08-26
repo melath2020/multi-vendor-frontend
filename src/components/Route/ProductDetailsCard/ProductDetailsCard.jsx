@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import styles from "../../../styles/styles";
-import { AiOutlineMessage } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart, AiOutlineMessage } from "react-icons/ai";
 
 const ProductDetailsCard = ({ setOpen, data }) => {
   const [count, setCount] = useState(1);
@@ -17,6 +17,16 @@ const ProductDetailsCard = ({ setOpen, data }) => {
 
   const incrementCount = () => {
     setCount(count + 1);
+  };
+
+  const removeFromWishlistHandler = (data) => {
+    setClick(!click);
+    
+  };
+
+  const addToWishlistHandler = (data) => {
+    setClick(!click);
+   
   };
 
   const handleMessageSubmit = () => {};
@@ -94,7 +104,30 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                     +
                   </button>
                 </div>
+
+                <div>
+                    {click ? (
+                      <AiFillHeart
+                        size={30}
+                        className="cursor-pointer"
+                        onClick={() => removeFromWishlistHandler(data)}
+                        color={click ? "red" : "#333"}
+                        title="Remove from wishlist"
+                      />
+                    ) : (
+                      <AiOutlineHeart
+                        size={30}
+                        className="cursor-pointer"
+                        onClick={() => addToWishlistHandler(data)}
+                        title="Add to wishlist"
+                      />
+                    )}
+                  </div>
+                
+
               </div>
+
+              
               </div>
 
              
