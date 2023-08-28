@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import styles from "../../../styles/styles";
-import { AiFillHeart, AiOutlineHeart, AiOutlineMessage } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart, AiOutlineMessage, AiOutlineShoppingCart } from "react-icons/ai";
 
 const ProductDetailsCard = ({ setOpen, data }) => {
   const [count, setCount] = useState(1);
   const [click, setClick] = useState(false);
-  const [select, setSelect] = useState(false);
+
 
   const decrementCount = () => {
     if (count > 1) {
@@ -17,6 +17,10 @@ const ProductDetailsCard = ({ setOpen, data }) => {
 
   const incrementCount = () => {
     setCount(count + 1);
+  };
+
+  const addToCartHandler = (id) => {
+   
   };
 
   const removeFromWishlistHandler = (data) => {
@@ -126,6 +130,17 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                 
 
               </div>
+
+              <div
+                  className={`${styles.button} mt-6 rounded-[4px] h-11 flex items-center`}
+                  onClick={() => addToCartHandler(data._id)}
+                >
+                  <span className="text-[#fff] flex items-center">
+                    Add to cart <AiOutlineShoppingCart className="ml-1" />
+                  </span>
+                </div>
+
+
 
               
               </div>
