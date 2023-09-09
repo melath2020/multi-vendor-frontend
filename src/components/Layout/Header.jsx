@@ -2,14 +2,21 @@ import React, { useState } from "react";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
 import { categoriesData, productData } from "../../static/data";
-import { AiOutlineHeart, AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
+import {
+  AiOutlineHeart,
+  AiOutlineSearch,
+  AiOutlineShoppingCart,
+} from "react-icons/ai";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 
 import { BiMenuAltLeft } from "react-icons/bi";
 import DropDown from "./DropDown";
 import Navbar from "./Navbar";
-const Header = ({activeHeading}) => {
+import { useSelector } from "react-redux";
+import { backend_url } from "../../server";
+const Header = ({ activeHeading }) => {
+  const { isAuthenticated, user , loading} = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [active, setActive] = useState(false);
@@ -36,7 +43,12 @@ const Header = ({activeHeading}) => {
   });
   return (
     <>
-      <div className={`${styles.section}`}>
+     {
+      loading ? (
+        <div>Loading</div>
+      ):(
+        <>
+         <div className={`${styles.section}`}>
         <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
           <div>
             <Link to="/">
@@ -133,10 +145,7 @@ const Header = ({activeHeading}) => {
           <div className="flex">
             <div className={`${styles.noramlFlex}`}>
               <div className="relative cursor-pointer mr-[15px]">
-                <AiOutlineHeart
-                  size={30}
-                  color="rgb(255 255 255 /83%)"
-                />
+                <AiOutlineHeart size={30} color="rgb(255 255 255 /83%)" />
                 <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
                   0
                 </span>
@@ -155,18 +164,29 @@ const Header = ({activeHeading}) => {
             </div>
             <div className={`${styles.noramlFlex}`}>
               <div className="relative cursor-pointer mr-[15px]">
-                <CgProfile
-                  size={30}
-                  color="rgb(255 255 255 /83%)"
-                />
-               
+                {isAuthenticated ? (
+                  <Link to="/login">
+                    <img
+                      src={`${backend_url}${user.avatar}`}
+                      className="w-[35px] h-[35px] rounded-full"
+                      alt=""
+                    />
+                  </Link>
+                ) : (
+                  <Link to="/login">
+
+<CgProfile size={30} color="rgb(255 255 255 /83%)" />
+                  </Link>
+                  
+                )}
               </div>
             </div>
           </div>
-
-     
         </div>
       </div>
+        </>
+      )
+     }
     </>
   );
 };
