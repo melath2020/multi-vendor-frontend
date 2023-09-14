@@ -29,7 +29,7 @@ const ProductCard = ({ data,isEvent }) => {
    <>
     <div className='w-full h-[370px] bg-white rounded-lg shadow-sm p-3 relative cursor-pointer'>
        <div className="flex justify-end"></div>
-       <Link to={`${isEvent === true ? `/product/${data._id}?isEvent=true` : `/product/${data._id}`}`}>
+       <Link to={`/product/${product_name}`}>
           <img
             src={`${data.image_Url[0]?.url}`}
             alt=""
