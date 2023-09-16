@@ -305,7 +305,7 @@ export const navItems = [
         },
         {
           public_id: "test",
-          url: "https://m.media-amazon.com/images/I/31Vle5fVdaL.jpg",
+          url: "https://www.istorebangladesh.com/images/thumbs/0000286_macbook-pro-m1_550.png",
         },
       ],
       shop: {
