@@ -32,7 +32,7 @@ const Header = ({ activeHeading }) => {
 
     const filteredProducts =
       productData &&
-      productData.filter((product) =>
+      productData?.filter((product) =>
         product.name.toLowerCase().includes(term.toLowerCase())
       );
     setSearchData(filteredProducts);
@@ -75,7 +75,7 @@ const Header = ({ activeHeading }) => {
                   size={30}
                   className="absolute right-2 top-1.5 cursor-pointer"
                 />
-                {searchData && searchData.length !== 0 ? (
+                {searchData && searchData?.length !== 0 ? (
                   <div className="absolute min-h-[30vh] bg-slate-50 shadow-sm-2 z-[9] p-4">
                     {searchData &&
                       searchData.map((i, index) => {
@@ -187,8 +187,8 @@ const Header = ({ activeHeading }) => {
                   {/* cart popup */}
             {openCart ? <Cart setOpenCart={setOpenCart} /> : null}
 
-             {/* wishlist popup */}
-             {openWishlist ? <Wishlist openWishlist={openWishlist} /> : null}
+             {/* /* wishlist popup */}
+             {openWishlist ? <Wishlist openWishlist={openWishlist} /> : null} 
 
  {/* wishlist popup */}
  {openWishlist ? (
