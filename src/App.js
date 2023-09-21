@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { LoginPage,SignupPage,ActivationPage,HomePage,ProductsPage,BestSellingPage,EventsPage, FAQPage,ProductDetailsPage } from './Routes'
+import { LoginPage,SignupPage,ActivationPage,HomePage,ProductsPage,BestSellingPage,EventsPage, FAQPage,ProductDetailsPage,ProfilePage } from './Routes'
 import "./App.css"
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,7 +33,7 @@ const App = () => {
         <Route path='/best-selling' element={<BestSellingPage/>}/>
         <Route path='/events' element={<EventsPage/>}/>
         <Route path='/faq' element={<FAQPage/>}/>
-       
+        <Route path='/profile' element={<ProfilePage/>}/>
       </Routes>
       </BrowserRouter>
 
