@@ -9,10 +9,26 @@ import {
   } from "react-icons/md";
   import { TbAddressBook } from "react-icons/tb";
   import { RiLockPasswordLine } from "react-icons/ri";
+import axios from "axios";
+import { server } from "../../server";
+import { toast } from "react-toastify";
 
 
 const ProfileSidebar = ({ setActive, active }) => {
     const navigate = useNavigate();
+
+    const logoutHandler = () => {
+      axios
+        .get(`${server}/user/logout`, { withCredentials: true })
+        .then((res) => {
+          toast.success(res.data.message);
+          window.location.reload(true);
+          navigate("/login");
+        })
+        .catch((error) => {
+          console.log(error.response.data.message);
+        });
+    };
   return (
     <div className="w-full bg-white shadow-sm rounded-[10px] p-4 pt-8">
     <div
@@ -112,7 +128,7 @@ const ProfileSidebar = ({ setActive, active }) => {
 
       <div
         className="flex items-center cursor-pointer w-full mb-8"
-        onClick={() => setActive(8)}
+        onClick={() => setActive(8) || logoutHandler()}
       >
         <AiOutlineLogin size={20} color={active === 8 ? "red" : ""} />
         <span
